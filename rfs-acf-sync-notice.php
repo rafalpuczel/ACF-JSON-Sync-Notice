@@ -46,7 +46,7 @@ if ( !defined('RFS_ACF_SYNC_NOTICE_DIR') ) {
 }
 
 if ( !defined('RFS_ACF_SYNC_NOTICE_URL') ) {
-  define('RFS_ACF_SYNC_NOTICE_URL', WP_PLUGIN_URL . '/rfs-acf-sync-notice');
+  define('RFS_ACF_SYNC_NOTICE_URL', plugins_url() . '/rfs-acf-sync-notice');
 }
 
 new \RFS_ACF_SYNC_NOTICE\Plugin();

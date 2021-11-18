@@ -44,7 +44,7 @@ if ( !class_exists( 'Plugin' ) ) {
           '<div class="error">
             <p>%s</p>
           </div>',
-          __( 'ACF Sync Notice plugin requires active Advanced Custom Fields PRO plugin to work.', RFS_ACF_SYNC_NOTICE_TEXTDOMAIN ),
+          __( 'ACF Sync Notice plugin requires active Advanced Custom Fields PRO plugin to work.', RFS_ACF_SYNC_NOTICE_TEXTDOMAIN )
         );
       } else {
         $this->acf_active = true;
@@ -180,7 +180,7 @@ if ( !class_exists( 'Plugin' ) ) {
             sprintf(
               __( ' %1$sView fields available for sync%2$s', RFS_ACF_SYNC_NOTICE_TEXTDOMAIN ),
               '<a href="' . esc_url( $this->sync_page_url ) . '">',
-              '</a>',
+              '</a>'
             )
           );
         }
@@ -228,7 +228,7 @@ if ( !class_exists( 'Plugin' ) ) {
           $groups,
           array(
             'menu_order' => 'ASC',
-            'title'      => 'ASC',
+            'title'      => 'ASC'
           )
         );
       }
