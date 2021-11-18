@@ -1,0 +1,49 @@
+/*
+  Project: RFS ACF JSON Sync Notice
+  Author: rfswp
+ */
+.rfs-acf-sync-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow: auto;
+}
+
+.rfs-acf-sync-modal.hide {
+  display: none;
+}
+
+.rfs-acf-sync-modal-inner {
+  position: relative;
+  top: 5%;
+  width: 350px;
+  padding: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 0 9px -1px rgba(0, 0, 0, 0.25);
+}
+
+.rfs-acf-sync-modal-heading {
+  background-color: #007cba;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  margin: -15px -15px 0;
+}
+
+.rfs-acf-sync-modal-text {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.rfs-acf-sync-modal-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
