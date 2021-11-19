@@ -73,7 +73,7 @@ if ( !class_exists( 'Updater' ) ) {
           $response = current($response);
         }
 
-        if ( $this->authorize_token && $response ) {
+        if ( $this->authorize_token && $response && isset( $response['zipball_url'] ) ) {
           $response['zipball_url'] = add_query_arg('access_token', $this->authorize_token, $response['zipball_url']);
         }
 

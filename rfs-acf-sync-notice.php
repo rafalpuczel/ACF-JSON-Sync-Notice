@@ -55,5 +55,6 @@ if ( !defined('RFS_ACF_SYNC_NOTICE_FILE') ) {
   define('RFS_ACF_SYNC_NOTICE_FILE', __FILE__);
 }
 
+new \RFS_ACF_SYNC_NOTICE\Admin();
 new \RFS_ACF_SYNC_NOTICE\Plugin();
 ?>

@@ -15,10 +15,6 @@ if ( !class_exists( 'Plugin' ) ) {
     private $sync = array();
     private $sync_page_url = '';
 
-    protected $github_username = 'rafalpuczel';
-    protected $github_repository = 'ACF-JSON-Sync-Notice';
-    protected $github_acces_token = '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';
-
     public function __construct() {
       $this->acf_active = class_exists('ACF');
 
@@ -67,13 +63,19 @@ if ( !class_exists( 'Plugin' ) ) {
         return;
       }
 
-      include_once(RFS_ACF_SYNC_NOTICE_DIR.'/classes/Updater.php');
+      $github_username = get_option('rfs-acf-sync-notice-settings-username');
+      $github_repository = get_option('rfs-acf-sync-notice-settings-repository');
+      $github_acces_token = get_option('rfs-acf-sync-notice-settings-token');
 
-      $updater = new \RFS_ACF_SYNC_NOTICE\Updater(RFS_ACF_SYNC_NOTICE_FILE);
-      $updater->set_username($this->github_username);
-      $updater->set_repository($this->github_repository);
-      $updater->authorize($this->github_acces_token);
-      $updater->initialize();
+      if ( $github_username && $github_repository && $github_acces_token ) {
+        include_once(RFS_ACF_SYNC_NOTICE_DIR.'/classes/Updater.php');
+
+        $updater = new \RFS_ACF_SYNC_NOTICE\Updater(RFS_ACF_SYNC_NOTICE_FILE);
+        $updater->set_username($github_username);
+        $updater->set_repository($github_repository);
+        $updater->authorize($github_acces_token);
+        $updater->initialize();
+      }
     }
 
     /**
