@@ -98,7 +98,7 @@ if ( !class_exists( 'Updater' ) ) {
             $repo_version = preg_replace('/^v/', '', $this->github_response['tag_name'] );
             $plugin_version = preg_replace('/^v/', '', $checked[$this->basename] );
 
-            $out_of_date = version_compare( '1.1.0', $plugin_version, 'gt' );
+            $out_of_date = version_compare( $repo_version, $plugin_version, 'gt' );
           }
 
           if ( $out_of_date ) {
