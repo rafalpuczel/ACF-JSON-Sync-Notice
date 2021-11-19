@@ -14,6 +14,8 @@ if ( !class_exists( 'Updater' ) ) {
     private $repository;
     private $authorize_token;
     private $github_response;
+    private $plugin_tested_up_to = '5.8.2';
+    private $changelog;
 
     public function __construct( $file ) {
       $this->file = $file;
@@ -27,6 +29,10 @@ if ( !class_exists( 'Updater' ) ) {
       $this->plugin = get_plugin_data($this->file);
       $this->basename = plugin_basename($this->file);
       $this->active = is_plugin_active($this->basename);
+
+      ob_start();
+      include RFS_ACF_SYNC_NOTICE_DIR.'/changelog.html';
+      $this->changelog = ob_get_clean();
     }
 
     public function set_username( $username ) {
@@ -109,7 +115,8 @@ if ( !class_exists( 'Updater' ) ) {
               'url' => $this->plugin['PluginURI'],
               'slug' => $slug,
               'package' => $new_files,
-              'new_version' => $this->github_response['tag_name']
+              'new_version' => $this->github_response['tag_name'],
+              'tested' => $this->plugin_tested_up_to
             );
 
             $transient->response[$this->basename] = (object) $plugin;
@@ -132,8 +139,9 @@ if ( !class_exists( 'Updater' ) ) {
           $plugin = array(
             'name' => $this->plugin['Name'],
             'slug' => $this->basename,
-            'requires' => '5.3',
-            'tested' => '5.4',
+            'requires' => $this->plugin['RequiresWP'],
+            'requires_php' => $this->plugin['RequiresPHP'],
+            'tested' => $this->plugin_tested_up_to,
             'version' => $this->github_response['tag_name'],
             'author' => $this->plugin['AuthorName'],
             'author_profile' => $this->plugin['AuthorURI'],
@@ -141,8 +149,8 @@ if ( !class_exists( 'Updater' ) ) {
             'homepage' => $this->plugin['PluginURI'],
             'short_description' => $this->plugin['Description'],
             'sections' => array(
-              'Description' => $this->plugin['Description'],
-              'Updates' => $this->github_response['body']
+              'description' => $this->plugin['Description'],
+              'changelog' => $this->changelog
             ),
             'download_link' => $this->github_response['zipball_url']
           );

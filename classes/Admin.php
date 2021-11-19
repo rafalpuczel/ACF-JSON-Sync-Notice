@@ -6,7 +6,6 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( !class_exists( 'Admin' ) ) {
 
   class Admin {
-    
     private $settings_page_capability = 'manage_options';
     private $settings_page_slug = '';
 
