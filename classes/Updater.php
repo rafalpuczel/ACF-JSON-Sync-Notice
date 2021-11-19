@@ -60,7 +60,7 @@ if ( !class_exists( 'Updater' ) ) {
           CURLOPT_CUSTOMREQUEST => "GET",
           CURLOPT_HTTPHEADER => array(
             "Authorization: token " . $this->authorize_token,
-            "User-Agent: PDUpdater/1.2.3"
+            "User-Agent: ". $this->repository
           )
         ]);
 
@@ -74,9 +74,9 @@ if ( !class_exists( 'Updater' ) ) {
           $response = current($response);
         }
 
-        if ( $this->authorize_token && $response && isset( $response['zipball_url'] ) ) {
-          $response['zipball_url'] = add_query_arg('access_token', $this->authorize_token, $response['zipball_url']);
-        }
+        // if ( $this->authorize_token && $response && isset( $response['zipball_url'] ) ) {
+        //   $response['zipball_url'] = add_query_arg('access_token', $this->authorize_token, $response['zipball_url']);
+        // }
 
         $this->github_response = $response;
       }
@@ -85,6 +85,8 @@ if ( !class_exists( 'Updater' ) ) {
     public function initialize() {
       add_filter('pre_set_site_transient_update_plugins', array( $this, 'modify_transient' ), 10, 1);
       add_filter('plugins_api', array( $this, 'plugin_popup' ), 10, 3);
+
+      add_filter('upgrader_pre_download', array( $this, 'before_download' ) );
       add_filter('upgrader_post_install', array( $this, 'after_install' ), 10, 3);
     }
 
@@ -155,6 +157,26 @@ if ( !class_exists( 'Updater' ) ) {
       }
 
       return $result;
+    }
+
+    public function before_download() {
+      add_filter( 'http_request_args', array( $this, 'download_package_headers' ), 15, 2 );
+      return false; // upgrader_pre_download filter default return value.
+    }
+
+    /**
+     * This function will add authentication header for download packages
+     * @param $args (array) HTTP GET REQUEST args
+     * @param $url (string)
+     * @return 
+    */
+    public function download_package_headers( $args, $url ) {
+      $args['headers']['Authorization'] = 'token ' . $this->authorize_token;
+
+      // Remove authentication headers from release assets
+      remove_filter( 'http_request_args', array( $this, 'download_package_headers' ) );
+
+      return $args;
     }
 
     public function after_install($response, $hook_extra, $result) {
