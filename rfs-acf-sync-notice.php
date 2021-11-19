@@ -1,15 +1,17 @@
 <?php
-/*
-Plugin Name: RFS ACF JSON Sync Notice
-Plugin URI: 
-Description: Displays notice if there is acf json sync available for acf field groups
-Version: 1.0.0
-Author: Rafal Puczel
-Author URI: https://www.rfscreations.pl/
-License: GPL v2 or later
-Copyright: Rafal Puczel
-Text Domain: rfswp
-Domain Path: /languages
+/**
+ * Plugin Name: RFS ACF JSON Sync Notice
+ * Plugin URI: 
+ * Description: Displays notice if there is acf json sync available for acf field groups
+ * Requires at least: 5.0
+ * Requires PHP: 7.0
+ * Version: v1.1.0
+ * Author: Rafal Puczel
+ * Author URI: https://www.rfscreations.pl/
+ * License: GPL v2 or later
+ * Copyright: Rafal Puczel
+ * Text Domain: rfswp
+ * Domain Path: /languages
 */
 
 if( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
@@ -47,6 +49,10 @@ if ( !defined('RFS_ACF_SYNC_NOTICE_DIR') ) {
 
 if ( !defined('RFS_ACF_SYNC_NOTICE_URL') ) {
   define('RFS_ACF_SYNC_NOTICE_URL', plugins_url() . '/rfs-acf-sync-notice');
+}
+
+if ( !defined('RFS_ACF_SYNC_NOTICE_FILE') ) {
+  define('RFS_ACF_SYNC_NOTICE_FILE', __FILE__);
 }
 
 new \RFS_ACF_SYNC_NOTICE\Plugin();
