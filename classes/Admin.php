@@ -24,9 +24,9 @@ if ( !class_exists( 'Admin' ) ) {
     */
     public function add_settings_page() {
       add_submenu_page( 
-        'options-general.php', 
-        __('RFS ACF Sync Notice', RFS_ACF_SYNC_NOTICE_TEXTDOMAIN), 
-        __('RFS ACF Sync Notice', RFS_ACF_SYNC_NOTICE_TEXTDOMAIN), 
+        'edit.php?post_type=acf-field-group', 
+        __('ACF Sync Notice', RFS_ACF_SYNC_NOTICE_TEXTDOMAIN), 
+        __('ACF Sync Notice', RFS_ACF_SYNC_NOTICE_TEXTDOMAIN), 
         $this->settings_page_capability, 
         $this->settings_page_slug, 
         array( $this, 'settings_page' )
@@ -41,7 +41,7 @@ if ( !class_exists( 'Admin' ) ) {
     public function settings_page() {
       ?>
       <div class="wrap">
-        <h2>RFS ACF JSON Sync Notice</h2>
+        <h2>ACF JSON Sync Notice</h2>
 
         <form method="post" action="options.php">
         <?php
@@ -60,7 +60,7 @@ if ( !class_exists( 'Admin' ) ) {
      * @return n/a
     */
     public function create_settings_sections() {
-      add_settings_section( $this->settings_page_slug.'-repo', __('Repository Connection', RFS_ACF_SYNC_NOTICE_TEXTDOMAIN), array( $this, 'repo_section_callback'), $this->settings_page_slug );
+      add_settings_section( $this->settings_page_slug.'-repo', __('Plugin Updates Settings', RFS_ACF_SYNC_NOTICE_TEXTDOMAIN), array( $this, 'repo_section_callback'), $this->settings_page_slug );
     }
 
     /**
@@ -68,7 +68,12 @@ if ( !class_exists( 'Admin' ) ) {
      * @param n/a
      * @return html
     */
-    public function repo_section_callback() {}
+    public function repo_section_callback() {
+      printf(
+        '<p>%s</p>',
+        __('Enter GitHub connection data in order to allow plugin updates.')
+      );
+    }
 
     /**
      * This function will create plugin settings fields

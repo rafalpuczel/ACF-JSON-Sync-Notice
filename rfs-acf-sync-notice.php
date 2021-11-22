@@ -5,7 +5,7 @@
  * Description: Displays notice if there is acf json sync available for acf field groups
  * Requires at least: 5.0
  * Requires PHP: 7.0
- * Version: v1.1.1
+ * Version: v1.1.2
  * Author: Rafal Puczel
  * Author URI: https://www.rfscreations.pl/
  * License: GPL v2 or later
