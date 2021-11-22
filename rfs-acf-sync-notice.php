@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin Name: RFS ACF JSON Sync Notice
- * Plugin URI: 
+ * Plugin Name: ACF JSON Sync Notice
+ * Plugin URI: https://github.com/rafalpuczel/ACF-JSON-Sync-Notice
  * Description: Displays notice if there is acf json sync available for acf field groups
  * Requires at least: 5.0
  * Requires PHP: 7.0
