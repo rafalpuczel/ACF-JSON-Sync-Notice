@@ -87,7 +87,7 @@ if ( !class_exists( 'Updater' ) ) {
       add_filter('plugins_api', array( $this, 'plugin_popup' ), 10, 3);
 
       add_filter('upgrader_pre_download', array( $this, 'before_download' ) );
-      add_filter('upgrader_install_package_result', array( $this, 'after_install' ), 10, 2);
+      add_filter('upgrader_post_install', array( $this, 'after_install' ), 10, 3);
     }
 
     public function modify_transient( $transient ) {
@@ -179,19 +179,15 @@ if ( !class_exists( 'Updater' ) ) {
       return $args;
     }
 
-    public function after_install($result, $hook_extra) {
+    public function after_install($response, $hook_extra, $result) {
       global $wp_filesystem;
 
-      $plugin_file = RFS_ACF_SYNC_NOTICE_FILE;
-      $basename = plugin_basename($plugin_file);
-      $is_active = is_plugin_active($basename);
-
-      $install_directory = plugin_dir_path($plugin_file);
+      $install_directory = plugin_dir_path($this->file);
       $wp_filesystem->move($result['destination'], $install_directory);
       $result['destination'] = $install_directory;
 
-      if ( $is_active ) {
-        activate_plugin($basename);
+      if ( $this->active ) {
+        activate_plugin($this->basename);
       }
 
       return $result;
