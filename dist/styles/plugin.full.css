@@ -2,7 +2,8 @@
   Project: RFS ACF JSON Sync Notice
   Author: rfswp
  */
-.rfs-acf-sync-modal {
+.rfs-acf-sync-modal,
+.rfs-acf-sync-auto-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -16,8 +17,41 @@
   overflow: auto;
 }
 
-.rfs-acf-sync-modal.hide {
+.rfs-acf-sync-modal.hide,
+.rfs-acf-sync-auto-container.hide {
   display: none;
+}
+
+.rfs-acf-sync-auto-container {
+  align-items: center;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.rfs-acf-sync-auto-container.show {
+  display: flex;
+}
+
+.rfs-acf-sync-auto-inner {
+  padding: 15px;
+  text-align: center;
+  background-color: #ffffff;
+  border: 2px solid #007cba;
+}
+
+.rfs-acf-sync-auto-inner .spinner {
+  float: none;
+  margin-bottom: 1rem;
+}
+
+.rfs-acf-sync-auto-message {
+  display: block;
+  margin: 0;
+  font-weight: bold;
+}
+
+.rfs-acf-sync-auto-message.is-synced {
+  color: #007cba;
 }
 
 .rfs-acf-sync-modal-inner {

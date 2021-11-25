@@ -11,6 +11,79 @@ class RfsAcfJsonSyncNotice {
   }
 
   init() {
+    switch (this.data.mode) {
+      case 'notice':
+        this.noticeMode();
+        break;
+      default:
+        this.autoMode();
+        break;
+    }
+  }
+
+  autoMode() {
+    if (!this.data.doAutoSync) {
+      return;
+    }
+
+    const container = document.createElement('div');
+    const inner = document.createElement('div');
+    container.classList.add(...['rfs-acf-sync-auto-container', 'show']);
+    inner.classList.add('rfs-acf-sync-auto-inner');
+    const spinner = document.createElement('span');
+    spinner.classList.add(...['spinner', 'is-active']);
+    const message = document.createElement('p');
+
+    Object.assign(message, {
+      className: 'rfs-acf-sync-auto-message',
+      innerText: this.data.autoSync.syncing,
+    });
+
+    inner.appendChild(spinner);
+    inner.appendChild(message);
+    container.appendChild(inner);
+    document.body.appendChild(container);
+
+    fetch(this.data.ajaxurl, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cache-Control': 'no-cache',
+      },
+      body: new URLSearchParams({
+        action: 'rfs_acf_auto_sync',
+        security: this.data.nonce,
+        sync_data: JSON.stringify(this.data.syncData),
+        files: JSON.stringify(this.data.files),
+        url: this.data.acfPageUrl,
+        auto_sync_mode: this.data.autoSyncMode,
+      }),
+    })
+      .then(response => response.json())
+      .then(response => {
+        if (response.ok) {
+          if (response.redirectUrl === 'none') {
+            spinner.remove();
+            message.innerText = this.data.autoSync.synced;
+            message.classList.add('is-synced');
+
+            setTimeout(() => {
+              container.classList.remove('show');
+            }, 500);
+          } else {
+            setTimeout(() => {
+              window.location.replace(response.redirectUrl);
+            }, 1000);
+          }
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  noticeMode() {
     if (!this.data.groupHasSync) {
       return;
     }

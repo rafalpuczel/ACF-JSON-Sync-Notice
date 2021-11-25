@@ -1,0 +1,125 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: RFS ACF JSON Sync Notice\n"
+"POT-Creation-Date: 2021-11-25 08:41+0100\n"
+"PO-Revision-Date: 2021-11-25 08:45+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
+"|| n%100>14) ? 1 : 2);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: classes/Admin.php:28 classes/Admin.php:29
+msgid "ACF JSON Sync Notice"
+msgstr ""
+
+#: classes/Admin.php:63
+msgid "Plugin Settings"
+msgstr "Ustawienia wtyczki"
+
+#: classes/Admin.php:64
+msgid "Updates Settings"
+msgstr "Aktualizacje wtyczki"
+
+#: classes/Admin.php:77
+msgid "Enter GitHub connection data in order to allow plugin updates."
+msgstr "Wprowadź dane połączenia z GitHub, aby umożliwić aktualizacje wtyczek."
+
+#: classes/Admin.php:90
+msgid "Plugin Mode"
+msgstr "Tryb wtyczki"
+
+#: classes/Admin.php:93
+msgid "Auto Sync"
+msgstr "Automatyczna synchronizacja"
+
+#: classes/Admin.php:94
+msgid "Display Notice"
+msgstr "Wyświetl komunikat"
+
+#: classes/Admin.php:100
+msgid "Auto Sync Mode"
+msgstr "Tryb automatycznej synchronizacji"
+
+#: classes/Admin.php:101
+msgid "Run sync when accessing Admin area or Custom Fields section only."
+msgstr ""
+"Uruchom synchronizację po wejściu do panelu administracyjnego lub tylko do "
+"sekcji Własne Pola."
+
+#: classes/Admin.php:104
+msgid "Whole Admin Area"
+msgstr "Cały panel administracyjny"
+
+#: classes/Admin.php:105
+msgid "ACF Section"
+msgstr "Sekcja ACF"
+
+#: classes/Admin.php:116
+msgid "GitHub Username"
+msgstr "Nazwa użytkownika GitHub"
+
+#: classes/Admin.php:121
+msgid "GitHub Repository Name"
+msgstr "Nazwa repozytorium GitHub"
+
+#: classes/Admin.php:126
+msgid "GitHub Access Token"
+msgstr "Token dostępu GitHub"
+
+#: classes/Plugin.php:71
+msgid ""
+"ACF JSON Sync Notice plugin requires active Advanced Custom Fields PRO "
+"plugin to work."
+msgstr ""
+"Wtyczka ACF JSON Sync Notice wymaga do działania aktywnej wtyczki Advanced "
+"Custom Fields PRO."
+
+#: classes/Plugin.php:238
+msgid "Synchronizing ACF field groups..."
+msgstr "Synchronizowanie grup pól ACF..."
+
+#: classes/Plugin.php:239
+msgid "Synchronizing completed."
+msgstr "Synchronizacja zakończona."
+
+#: classes/Plugin.php:242
+msgid "ACF Sync Available"
+msgstr "Dostępna synchronizacja ACF"
+
+#: classes/Plugin.php:243
+msgid ""
+"The field group you are editing has not been synced with your local acf json "
+"file. Making any changes will overwrite the local json file and may result "
+"in losing data."
+msgstr ""
+"Grupa pól, którą edytujesz, nie została zsynchronizowana z lokalnym plikiem "
+"acf json. Dokonanie jakichkolwiek zmian spowoduje nadpisanie lokalnego pliku "
+"json i może spowodować utratę danych."
+
+#: classes/Plugin.php:247
+msgid "View files to sync"
+msgstr "Wyświetl pliki do synchronizacji"
+
+#: classes/Plugin.php:251
+msgid "Ignore"
+msgstr "Ignoruj"
+
+#: classes/Plugin.php:318
+msgid "You have unsynced ACF fields."
+msgstr "Masz niezsynchronizowane pola ACF."
+
+#: classes/Plugin.php:320
+#, php-format
+msgid " %1$sView fields available for sync%2$s"
+msgstr " %1$sWyświetl pola dostępne do synchronizacji%2$s"
+
+#~ msgid "RFS Woo Advanced Cart"
+#~ msgstr "RFS Woo Zaawansowany Koszyk"

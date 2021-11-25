@@ -92,6 +92,85 @@ function () {
   _createClass(RfsAcfJsonSyncNotice, [{
     key: "init",
     value: function init() {
+      switch (this.data.mode) {
+        case 'notice':
+          this.noticeMode();
+          break;
+
+        default:
+          this.autoMode();
+          break;
+      }
+    }
+  }, {
+    key: "autoMode",
+    value: function autoMode() {
+      var _container$classList,
+          _spinner$classList,
+          _this = this;
+
+      if (!this.data.doAutoSync) {
+        return;
+      }
+
+      var container = document.createElement('div');
+      var inner = document.createElement('div');
+
+      (_container$classList = container.classList).add.apply(_container$classList, ['rfs-acf-sync-auto-container', 'show']);
+
+      inner.classList.add('rfs-acf-sync-auto-inner');
+      var spinner = document.createElement('span');
+
+      (_spinner$classList = spinner.classList).add.apply(_spinner$classList, ['spinner', 'is-active']);
+
+      var message = document.createElement('p');
+      Object.assign(message, {
+        className: 'rfs-acf-sync-auto-message',
+        innerText: this.data.autoSync.syncing
+      });
+      inner.appendChild(spinner);
+      inner.appendChild(message);
+      container.appendChild(inner);
+      document.body.appendChild(container);
+      fetch(this.data.ajaxurl, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Cache-Control': 'no-cache'
+        },
+        body: new URLSearchParams({
+          action: 'rfs_acf_auto_sync',
+          security: this.data.nonce,
+          sync_data: JSON.stringify(this.data.syncData),
+          files: JSON.stringify(this.data.files),
+          url: this.data.acfPageUrl,
+          auto_sync_mode: this.data.autoSyncMode
+        })
+      }).then(function (response) {
+        return response.json();
+      }).then(function (response) {
+        if (response.ok) {
+          if (response.redirectUrl === 'none') {
+            spinner.remove();
+            message.innerText = _this.data.autoSync.synced;
+            message.classList.add('is-synced');
+            setTimeout(function () {
+              container.classList.remove('show');
+            }, 500);
+          } else {
+            setTimeout(function () {
+              window.location.replace(response.redirectUrl);
+            }, 1000);
+          }
+        }
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: "noticeMode",
+    value: function noticeMode() {
       if (!this.data.groupHasSync) {
         return;
       }

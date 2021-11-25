@@ -7,7 +7,8 @@ $color-white: #ffffff;
 $color-blue: #007cba;
 $transition: all 0.3s ease-in-out;
 
-.rfs-acf-sync-modal {
+.rfs-acf-sync-modal,
+.rfs-acf-sync-auto-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -22,6 +23,38 @@ $transition: all 0.3s ease-in-out;
 
   &.hide {
     display: none;
+  }
+}
+
+.rfs-acf-sync-auto-container {
+  align-items: center;
+  display: none;
+  background-color: rgba(255, 255, 255, 0.5);
+
+  &.show {
+    display: flex;
+  }
+}
+
+.rfs-acf-sync-auto-inner {
+  padding: 15px;
+  text-align: center;
+  background-color: $color-white;
+  border: 2px solid $color-blue;
+
+  .spinner {
+    float: none;
+    margin-bottom: 1rem;
+  }
+}
+
+.rfs-acf-sync-auto-message {
+  display: block;
+  margin: 0;
+  font-weight: bold;
+
+  &.is-synced {
+    color: $color-blue;
   }
 }
 

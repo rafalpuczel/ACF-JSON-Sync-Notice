@@ -2,7 +2,7 @@
 /**
  * Plugin Name: ACF JSON Sync Notice
  * Plugin URI: https://github.com/rafalpuczel/ACF-JSON-Sync-Notice
- * Description: Displays notice if there is acf json sync available for acf field groups
+ * Description: Synchronizes field groups with acf local json files automatically or displays notice if there is acf json sync available.
  * Requires at least: 5.0
  * Requires PHP: 7.0
  * Version: v1.1.2
