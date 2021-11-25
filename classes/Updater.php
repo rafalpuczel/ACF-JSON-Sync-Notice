@@ -182,12 +182,16 @@ if ( !class_exists( 'Updater' ) ) {
     public function after_install($response, $hook_extra, $result) {
       global $wp_filesystem;
 
-      $install_directory = plugin_dir_path($this->file);
+      $plugin_file = RFS_ACF_SYNC_NOTICE_FILE;
+      $basename = plugin_basename($plugin_file);
+      $is_active = is_plugin_active($basename);
+
+      $install_directory = plugin_dir_path($plugin_file);
       $wp_filesystem->move($result['destination'], $install_directory);
       $result['destination'] = $install_directory;
 
-      if ( $this->active ) {
-        activate_plugin($this->basename);
+      if ( $is_active ) {
+        activate_plugin($basename);
       }
 
       return $result;
