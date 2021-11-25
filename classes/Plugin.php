@@ -85,7 +85,7 @@ if ( !class_exists( 'Plugin' ) ) {
      * @return n/a
     */
     public function check_for_updates() {
-      if ( !is_admin() || wp_doing_ajax() || wp_doing_cron() ) {
+      if ( !is_admin() || wp_doing_cron() ) {
         return;
       }
 
