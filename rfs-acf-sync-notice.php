@@ -5,7 +5,7 @@
  * Description: Synchronizes field groups with acf local json files automatically or displays notice if there is acf json sync available.
  * Requires at least: 5.0
  * Requires PHP: 7.0
- * Version: v2.0.0
+ * Version: v2.0.1
  * Author: Rafal Puczel
  * Author URI: https://www.rfscreations.pl/
  * License: GPL v2 or later
