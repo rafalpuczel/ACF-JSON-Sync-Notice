@@ -5,7 +5,7 @@
  * Description: Synchronizes field groups with acf local json files automatically or displays notice if there is acf json sync available.
  * Requires at least: 5.0
  * Requires PHP: 7.0
- * Version: v2.0.1
+ * Version: v3.0.0
  * Author: Rafal Puczel
  * Author URI: https://www.rfscreations.pl/
  * License: GPL v2 or later
@@ -40,15 +40,15 @@ if ( !defined('RFS_ACF_SYNC_NOTICE_TEXTDOMAIN') ) {
 }
 
 if ( !defined('RFS_ACF_SYNC_NOTICE_SLUG') ) {
-  define('RFS_ACF_SYNC_NOTICE_SLUG', 'rfs-acf-sync-notice');
+  define('RFS_ACF_SYNC_NOTICE_SLUG', basename(__DIR__));
 }
 
 if ( !defined('RFS_ACF_SYNC_NOTICE_DIR') ) {
-  define('RFS_ACF_SYNC_NOTICE_DIR', WP_PLUGIN_DIR . '/rfs-acf-sync-notice');
+  define('RFS_ACF_SYNC_NOTICE_DIR', WP_PLUGIN_DIR . '/'.RFS_ACF_SYNC_NOTICE_SLUG);
 }
 
 if ( !defined('RFS_ACF_SYNC_NOTICE_URL') ) {
-  define('RFS_ACF_SYNC_NOTICE_URL', plugins_url() . '/rfs-acf-sync-notice');
+  define('RFS_ACF_SYNC_NOTICE_URL', plugins_url() . '/'.RFS_ACF_SYNC_NOTICE_SLUG);
 }
 
 if ( !defined('RFS_ACF_SYNC_NOTICE_FILE') ) {
