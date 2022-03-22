@@ -6,6 +6,8 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if ( !class_exists( 'Plugin' ) ) {
 
   class Plugin {
+    private $settings_slug = '';
+
     private $acf_active = false;
 
     private $acf_post_type = 'acf-field-group';
@@ -33,6 +35,7 @@ if ( !class_exists( 'Plugin' ) ) {
     private $post_id = false;
 
     public function __construct() {
+      $this->settings_slug = RFS_ACF_SYNC_NOTICE_SLUG.'-settings';
       $this->acf_active = $this->is_acf_active();
 
       add_action( 'admin_notices', array( $this, 'acf_plugin_required_notice' ) );
@@ -88,9 +91,9 @@ if ( !class_exists( 'Plugin' ) ) {
         return;
       }
 
-      $github_username    = get_option( 'rfs-acf-sync-notice-settings-username' );
-      $github_repository  = get_option( 'rfs-acf-sync-notice-settings-repository' );
-      $github_acces_token = get_option( 'rfs-acf-sync-notice-settings-token' );
+      $github_username    = get_option( $this->settings_slug.'-username' );
+      $github_repository  = get_option( $this->settings_slug.'-repository' );
+      $github_acces_token = get_option( $this->settings_slug.'-token' );
 
       if ( $github_username && $github_repository && $github_acces_token ) {
         include_once( RFS_ACF_SYNC_NOTICE_DIR . '/classes/Updater.php' );
@@ -126,8 +129,8 @@ if ( !class_exists( 'Plugin' ) ) {
 
       $this->is_acf_page = $this->post_type == $this->acf_post_type;
 
-      $this->auto_sync_mode = get_option( 'rfs-acf-sync-notice-settings-auto-mode', 'admin' );
-      $this->mode           = get_option( 'rfs-acf-sync-notice-settings-mode', 'auto' );
+      $this->auto_sync_mode = get_option( $this->settings_slug.'-auto-mode', 'admin' );
+      $this->mode           = get_option( $this->settings_slug.'-mode', 'auto' );
 
       if ( !$this->is_acf_page ) {
         // Make plugin load in whole admin area
